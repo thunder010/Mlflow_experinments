@@ -2,6 +2,14 @@
 # P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
 # Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
 
+import dagshub
+dagshub.init(repo_owner='thunder010', repo_name='Mlflow_experinments', mlflow=True)
+
+import mlflow
+with mlflow.start_run():
+  mlflow.log_param('parameter name', 'value')
+  mlflow.log_metric('metric name', 1)
+
 import os
 import warnings
 import sys
@@ -80,8 +88,8 @@ if __name__ == "__main__":                 # Main function to execute the script
 
         # ## For Remote server only(DAGShub)
 
-        # remote_server_uri="https://dagshub.com/krishnaik06/mlflowexperiments.mlflow" # Replace with your DagsHub repository URI
-        # mlflow.set_tracking_uri(remote_server_uri)
+        remote_server_uri="https://dagshub.com/thunder010/Mlflow_experinments.mlflow" # Replace with your DagsHub repository URI
+        mlflow.set_tracking_uri(remote_server_uri)
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme   # Get the tracking URI scheme to determine the type of store being used, here store means the backend where the MLflow tracking server is running, it can be a file store, database, or remote server 
 
